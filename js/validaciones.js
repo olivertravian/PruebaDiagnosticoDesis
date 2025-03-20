@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 mostrarAlerta(data.message || "Producto guardado correctamente.");
                 document.getElementById("registroForm").reset();
                 let selectSucursal = document.getElementById("sucursal");
-                selectSucursal.innerHTML = '<option value="">Seleccione una sucursal</option>';
+                selectSucursal.innerHTML = '<option value=""></option>';
             }else if (data.status === "error") {
                 mostrarAlerta(data.message || "Ocurrió un error inesperado. Intente nuevamente.");
             } else {
