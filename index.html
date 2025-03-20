@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Producto</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<div id="modalAlerta" class="modal-alerta">
+    <div class="modal-contenido">
+        <p id="mensajeAlerta"></p>
+        <button id="cerrarAlerta">Aceptar</button>
+    </div>
+</div>
+<body>
+    <div class="container">
+        <h2>Formulario de Producto</h2>
+        
+        <form id="registroForm">
+            <div class="row">
+                <div class="column">
+                    <label for="codigo">Código</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Ej:PROD01K" oninput="validarCodigo(this)">
+                </div>                
+                <div class="column">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej:Set Comedor" maxlength="50">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <label for="bodega">Bodega</label>
+                    <select id="bodega" name="bodega">
+                        <option value="">Seleccione una bodega</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="sucursal">Sucursal</label>
+                    <select id="sucursal" name="sucursal">
+                        <option value="">Seleccione una sucursal</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <label for="moneda">Moneda</label>
+                    <select id="moneda" name="moneda">
+                        <option value="">Seleccione una moneda</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="precio">Precio</label>
+                    <input type="text" id="precio" name="precio" placeholder="Ej:19.99" oninput="validarPrecio(this)" maxlength="10">
+                </div>
+            </div>
+
+            <label>Material del Producto</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="plastico"> Plástico</label>
+                <label><input type="checkbox" name="metal"> Metal</label>
+                <label><input type="checkbox" name="madera"> Madera</label>
+                <label><input type="checkbox" name="vidrio"> Vidrio</label>
+                <label><input type="checkbox" name="textil"> Textil</label>
+            </div>
+
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" placeholder="Ej:Elegante set de comedor de madera natural" maxlength="1000"></textarea>
+
+            <button type="submit">Guardar Producto</button>
+        </form>
+    </div>
+
+    <script src="js/validaciones.js"></script>
+    <script src="js/ajax.js"></script>
+</body>
+</html>
+
+

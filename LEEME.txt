@@ -1,0 +1,17 @@
+Descripción del Proyecto
+Esta es la Prueba de Diagnóstico.
+El sistema permite registrar productos con código único, nombre, bodega, sucursal, moneda, precio, materiales y descripción.
+
+Requisitos del Sistema
+Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
+
+PostgreSQL 16.8
+PHP 8.2 (8.2.28)
+
+Creacion de base de datos
+
+Si usted ya esta conectado a una base de datos y quiere solo añadir las tablas y sp correspondientes salte a la seccion de coneccion
+
+Alternativas
+
+
