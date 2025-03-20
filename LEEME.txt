@@ -10,6 +10,9 @@ Si decides usar otro nombre o ubicación, asegúrate de modificar los comandos e
 Ejemplo de ruta recomendada:
 C:\PruebaDiagnosticoDesis\
 
+Si esta leyendo esto desde github puede descargar el .zip apretando el boton verde que dice "< > Code" y ahi preciona "Download zip", luego descomprima
+el contenido dentro de la carpeta "PruebaDiagnosticoDesis" o la que usted estime conveniente
+
 Paso 1:
 Requisitos del Sistema
 Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
