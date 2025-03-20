@@ -4,14 +4,13 @@ Prueba de Diagnóstico.
 Este documento te guiará paso a paso para instalar y ejecutar el proyecto correctamente.
 Si tienes algún problema, al final encontrarás una sección de posibles errores y mis datos de contacto para cualquier consulta.
 
+Para informacion de como descargar el proyecto mediante github dirijase al final de este documento
+
 Nota importante:
 Para facilitar la instalación, recomiendo que la carpeta del proyecto se llame PruebaDiagnosticoDesis y esté ubicada en C:\.
 Si decides usar otro nombre o ubicación, asegúrate de modificar los comandos en consecuencia.
 Ejemplo de ruta recomendada:
 C:\PruebaDiagnosticoDesis\
-
-Si esta leyendo esto desde github puede descargar el .zip apretando el boton verde que dice "< > Code" y ahi preciona "Download zip", luego descomprima
-el contenido dentro de la carpeta "PruebaDiagnosticoDesis" o la que usted estime conveniente
 
 Paso 1:
 Requisitos del Sistema
@@ -215,6 +214,19 @@ Haz clic en Aceptar en todas las ventanas.
 Reinicia tu computadora o abre una nueva terminal para aplicar los cambios.
 
 para verificar si funciono prueba con psql --version
+
+GITHUB
+desde https://github.com/olivertravian/PruebaDiagnosticoDesis.git
+puede descargar el .zip apretando el boton verde que dice "< > Code" y ahi preciona "Download zip", luego descomprima
+el contenido dentro de la carpeta "PruebaDiagnosticoDesis" o la que usted estime conveniente
+
+si quiere clonar directo con comando cmd
+abra cmd luego aprete escriba o copie y pegue
+cd C:\
+una vez en la ubicacion escriba o copie y pegue
+git clone https://github.com/olivertravian/PruebaDiagnosticoDesis.git
+para hacer esto recuerda tener descargado git
+Si no tienes Git instalado, descárgalo aquí: https://git-scm.com/downloads
 
 Soporte:
 Si tienes problemas con la instalación, mi teléfono es: +569 3236 3947 y mi correo: oliver.chacon.alvarez@gmail.com
