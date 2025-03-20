@@ -1,17 +1,219 @@
-Descripción del Proyecto
-Esta es la Prueba de Diagnóstico.
-El sistema permite registrar productos con código único, nombre, bodega, sucursal, moneda, precio, materiales y descripción.
+INTRUCCIONES DE INSTALACCION.
+Prueba de Diagnóstico.
 
+Este documento te guiará paso a paso para instalar y ejecutar el proyecto correctamente.
+Si tienes algún problema, al final encontrarás una sección de posibles errores y mis datos de contacto para cualquier consulta.
+
+Nota importante:
+Para facilitar la instalación, recomiendo que la carpeta del proyecto se llame PruebaDiagnosticoDesis y esté ubicada en C:\.
+Si decides usar otro nombre o ubicación, asegúrate de modificar los comandos en consecuencia.
+Ejemplo de ruta recomendada:
+C:\PruebaDiagnosticoDesis\
+
+Paso 1:
 Requisitos del Sistema
 Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
 
 PostgreSQL 16.8
 PHP 8.2 (8.2.28)
 
-Creacion de base de datos
+Este proyecto debe ser compatible con:
+PHP: 5.6, 7.x, 8.x (hasta 8.2.28 probado).
+PostgreSQL:  9.5 hasta 16.8.
 
-Si usted ya esta conectado a una base de datos y quiere solo añadir las tablas y sp correspondientes salte a la seccion de coneccion
+No recomendado para versiones menores a:
+PHP 5.5 o menor: Algunas funciones de PDO pueden no estar soportadas.
+PostgreSQL 9.4 o menor: Algunos procedimientos almacenados (Stored Procedures) pueden no ejecutarse correctamente.
 
-Alternativas
+link para php: https://windows.php.net/download/
+link para PostgreSQL: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+Si ya tienes PostgreSQL y PHP instalados, puede verificar sus versiones con:
+php -v (para PHP)
+psql --version (para PostgreSQL)
+
+MUCHA ATENCION A LA CONTRASEÑA QUE USAS PARA INSTALAR PostgreSQL, ya que la usaremos pronto
+
+Paso 2:Creación de base de datos
+
+Si ya tienes PostgreSQL y quieres solo añadir las tablas, salta a la sección de "Carga de Tablas y Procedimientos".
+
+En Windows, busca SQL Shell (psql) en el menú de inicio y ábrelo.
+Si no lo tienes instalado, revisa que PostgreSQL esté correctamente instalado.
+
+Veras algo similar a esto 
+Server [localhost]:  
+Database [postgres]:  
+Port [5432]:  
+Username [postgres]:  
+Password for user postgres:
+
+Presiona Enter en cada campo para aceptar los valores predeterminados, excepto en Password.
+
+Si PostgreSQL tiene contraseña, introdúcela aquí y presiona Enter.
+Si no la recuerdas, revisa la configuración en pgAdmin.
+Ojo que la aunque escribas no saldrá que estas escribiendo pero no te preocupes, escribe tu contraseña y apreta enter
+
+Si la conexión es exitosa, verás esto
+
+postgres=#
+
+Ahora que estás conectado, crea la base de datos escribiendo:
+
+CREATE DATABASE registro_productos;
+
+luego ingresamos con
+
+\c registro_productos;
+
+ahora nos saldrá "Ahora está conectado a la base de datos «registro_productos» con el usuario «postgres».
+registro_productos=#"
+
+Paso 3: Carga de Tablas y Procedimientos
+
+Si ya tienes experiencia con SQL, puedes encontrar los archivos en la carpeta /sql/ y ejecutarlos manualmente en pgAdmin o psql.
+Si no, sigue estos pasos en el orden correcto para evitar errores.
+
+Dentro de la carpeta sql/, encontrarás estos archivos:
+Tablas.sql → Crea las tablas principales (productos, bodegas, sucursales, etc.).
+Datos.sql → Inserta datos iniciales en las tablas (monedas, bodegas, etc.).
+Store_Procedure.sql → Crea los Stored Procedures que manejan la lógica del sistema.
+
+¿Cómo ejecutar los archivos SQL?
+(si hiciste el paso anterior puedes omitir hasta la parte donde se conecta a la base de datos)
+
+Abrir SQL Shell (psql)
+Abre el menú de Inicio en Windows.
+Busca y ejecuta "SQL Shell (psql)".
+
+Server: Dale Enter (deja localhost).
+Database: Dale Enter (usará postgres por defecto).
+Port: Dale Enter (usará 5432 por defecto).
+Username: Escribe postgres y presiona Enter.
+Password: Ingresa la contraseña de tu usuario postgres.
+
+básicamente el mismo paso de arriba 
+
+Ahora conéctate a la base de datos:
+\c registro_productos;
+en caso que el nombre elegido sea distinto, cambiar al correspondiente
+
+nos ubicamos en la carpeta donde están los archivos y ejecutamos
+\! cd "C:/Prueba Diagnostico Desis/sql"
+
+Luego EN ORDEN
+ejecutamos
+
+\i 'C:/PruebaDiagnosticoDesis/sql/Tablas.sql';
+
+\i 'C:/PruebaDiagnosticoDesis/sql/Datos.sql';
+
+\i 'C:/PruebaDiagnosticoDesis/sql/Store_Procedures.sql';
+
+
+Ejecuta los archivos en el orden correcto
+
+psql -U postgres -d registro_productos -f sql/Tablas.sql
+
+psql -U postgres -d registro_productos -f sql/Datos.sql
+
+psql -U postgres -d registro_productos -f sql/Store_Procedure.sql
+
+
+Paso 4: Configuración de la Conexión a la Base de Datos
+
+Abrir el archivo php/conexion.php que esta dentro del repositorio que clonamos
+
+Modificar las credenciales según tu configuración
+
+$host = "localhost";  
+$dbname = "registro_productos";  
+$user = "postgres";  
+$password = "TU_CONTRASEÑA_AQUÍ";  
+
+En el archivo subido deje datos mi coneccion local como muestra
+
+Paso 5: Lanzar el Proyecto
+
+Asegúrate de estar en la carpeta del proyecto antes de iniciar el servidor PHP.
+
+Abrir la terminal en la carpeta del proyecto
+
+Ve a la carpeta donde está tu proyecto, por ejemplo:
+C:\PruebaDiagnosticoDesis\
+
+Método 1
+Abrir la terminal dentro de la carpeta
+
+Dentro de la carpeta, mantén presionada la tecla Shift y haz clic derecho.
+Selecciona Abrir ventana de comandos aquí o Abrir en PowerShell.
+
+Método 2 (Desde el Explorador de Archivos)
+
+Escribe cmd en la barra de dirección de la carpeta y presiona Enter.
+
+Método 3 (Desde la Terminal directamente)
+Abre CMD (Win + R → cmd → Enter).
+Usa cd para moverte a la carpeta del proyecto:
+
+por ejemplo
+cd "C:\Prueba Diagnostico Desis"
+ 
+una vez dentro usamos 
+
+php -S localhost:8000
+
+Ahora buscamos
+
+http://localhost:8000 en el navegador y el proyecto debería estar corriendo de manera correcta.
+
+
+Notas Finales
+Si algo no funciona:
+
+Verifica que PostgreSQL y PHP estén correctamente instalados.
+Asegúrate de que la base de datos y las tablas están creadas.
+Si la base de datos no carga, revisa que sql/estructura.sql exista y esté correctamente formateado.
+Si la aplicación no carga, revisa si el servidor está corriendo correctamente con php -S localhost:8000.
+
+PROBLEMAS 
+Ejecuto el comando pero no me funciona
+Para solucionar el problema de la ruta y permitir que puedas ejecutar psql y php desde cualquier terminal (CMD, PowerShell, etc.), necesitas agregar sus rutas al Path de Windows. Aquí te explico cómo hacerlo paso a paso.
+Paso 1: Encontrar las rutas de PostgreSQL y PHP
+Debemos agregar las rutas correctas al Path de Windows.
+
+Ubicar PostgreSQL
+
+Abre el Explorador de Archivos
+Ve a la carpeta donde instalaste PostgreSQL, por ejemplo:
+C:\Program Files\PostgreSQL\16\bin
+Copia esa ruta.
+Ubicar PHP
+Si instalaste PHP manualmente, ve a la carpeta donde lo descargaste.
+Un ejemplo de ruta podría ser:
+C:\php
+Copia la ruta donde se encuentra el archivo php.exe.
+Paso 2: Agregar las Rutas al PATH de Windows
+Abrir la Configuración de Variables de Entorno
+
+Presiona Win + R, escribe sysdm.cpl y presiona Enter.
+En la ventana que aparece, ve a la pestaña Opciones Avanzadas y haz clic en Variables de Entorno.
+Agregar PostgreSQL y PHP al Path
+
+En la sección Variables del sistema, busca y selecciona Path, luego haz clic en Editar.
+En la ventana que aparece, haz clic en Nuevo y pega la ruta que copiaste de PostgreSQL:
+C:\Program Files\PostgreSQL\16\bin
+Haz clic en Nuevo nuevamente y pega la ruta de PHP:
+C:\php
+
+Guardar los cambios
+
+Haz clic en Aceptar en todas las ventanas.
+Reinicia tu computadora o abre una nueva terminal para aplicar los cambios.
+
+para verificar si funciono prueba con psql --version
+
+Soporte:
+Si tienes problemas con la instalación, mi teléfono es: +569 3236 3947 y mi correo: oliver.chacon.alvarez@gmail.com
 
 

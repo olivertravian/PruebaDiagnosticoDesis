@@ -1,3 +1,5 @@
+--PASO-2
+
 INSERT INTO bodegas (nombre) VALUES ('Bodega Central'), ('Bodega Norte'), ('Bodega Sur');
 
 INSERT INTO sucursales (nombre, bodega_id) VALUES 

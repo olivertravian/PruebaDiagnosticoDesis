@@ -1,3 +1,5 @@
+--PASO-1
+
 CREATE TABLE bodegas (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL
@@ -21,7 +23,7 @@ CREATE TABLE productos (
     bodega_id INT NOT NULL,
     sucursal_id INT NOT NULL,
     moneda_id INT NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
+    precio DECIMAL(15,2) NOT NULL,
     descripcion TEXT NOT NULL,
     plastico BOOLEAN NOT NULL DEFAULT FALSE,
     metal BOOLEAN NOT NULL DEFAULT FALSE,

@@ -1,3 +1,5 @@
+--PASO-3
+
 --DROP FUNCTION IF EXISTS sp_verificar_producto(varchar);
 
 CREATE OR REPLACE FUNCTION sp_verificar_producto(p_codigo VARCHAR(15))
@@ -24,7 +26,7 @@ CREATE OR REPLACE FUNCTION sp_insertar_producto(
     p_bodega_id INTEGER,
     p_sucursal_id INTEGER,
     p_moneda_id INTEGER,
-    p_precio DECIMAL(10,2),
+    p_precio DECIMAL(15,2),
     p_descripcion TEXT,
     p_plastico BOOLEAN,
     p_metal BOOLEAN,

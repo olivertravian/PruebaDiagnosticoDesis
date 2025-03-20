@@ -4,7 +4,6 @@ function validarCodigo(input) {
     // Permitir solo letras y numeros
     valor = valor.replace(/[^A-Za-z0-9]/g, ''); 
 
-    // Limitar a 15 caracteres
     if (valor.length > 15) {
         valor = valor.substring(0, 15);
     }
@@ -27,18 +26,30 @@ function validarPrecio(input) {
     valor = valor.replace(/[^0-9.]/g, ''); 
 
     let partes = valor.split('.');
+
     if (partes.length > 2) {
         valor = partes[0] + '.' + partes.slice(1).join('');
     }
+
+    if (partes[0].length > 10) {
+        valor = partes[0].substring(0, 10) + (partes.length > 1 ? '.' + partes[1] : '');
+    }
+
+    if (partes.length === 2 && partes[1].length > 2) {
+        valor = partes[0] + '.' + partes[1].substring(0, 2);
+    }
+
     if (valor.startsWith('.')) {
         valor = '0' + valor;
     }
-    if (partes.length === 2) {
-        valor = partes[0] + '.' + partes[1].substring(0, 2);
+
+    if (valor.length > 13) {
+        valor = valor.substring(0, 13);
     }
 
     input.value = valor;
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const modalAlerta = document.getElementById("modalAlerta");
@@ -55,9 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("registroForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío normal del formulario
+        event.preventDefault();
 
         let formData = new FormData(this);
+
+        formData.set("codigo", formData.get("codigo").trim());
+        formData.set("nombre", formData.get("nombre").trim());
+        formData.set("precio", formData.get("precio").trim());
+        formData.set("descripcion", formData.get("descripcion").trim());
 
         //Validar Código del Producto
         let codigo = formData.get("codigo").trim();
@@ -142,11 +158,20 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            mostrarAlerta(data.message);
             if (data.status === "success") {
+                mostrarAlerta(data.message || "Producto guardado correctamente.");
                 document.getElementById("registroForm").reset();
+                let selectSucursal = document.getElementById("sucursal");
+                selectSucursal.innerHTML = '<option value="">Seleccione una sucursal</option>';
+            }else if (data.status === "error") {
+                mostrarAlerta(data.message || "Ocurrió un error inesperado. Intente nuevamente.");
+            } else {
+                mostrarAlerta("Ocurrió un error inesperado. Intente nuevamente.");
             }
         })
-        .catch(error => console.error("Error en la petición AJAX:", error));
+        .catch(error => {
+            console.error("Error en la petición AJAX:", error);
+            mostrarAlerta("Ocurrió un error inesperado. Intente nuevamente.");
+        });
     });
 });
